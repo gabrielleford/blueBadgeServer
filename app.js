@@ -8,6 +8,8 @@ const app = express();
 // app.use(express.json());
 // app.use(middleware.headers);
 
+//app.use('/user', controllers.userController);
+
 app.listen(3000, () => {
     console.log(`[Server]: App is listening on 3000.`);
 });
