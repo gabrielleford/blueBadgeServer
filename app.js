@@ -9,6 +9,7 @@ app.use(express.json());
 //app.use(require("./middleware/headers"));
 
 app.use('/user', controllers.usercontroller);
+app.use('/post', controllers.postcontroller);
 
 dbConnection.authenticate()
     .then(() => dbConnection.sync())
