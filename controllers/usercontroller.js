@@ -3,6 +3,7 @@ const { User } = require('../models');
 const { UniqueConstraintError } = require('sequelize/lib/errors');
 const jwt = require('jsonwebtoken');
 const bcrypt = require('bcryptjs');
+const validateJWT = require("../middleware/validatejwt");
 
 // { "user" : { "email" : "test3@test.com", "password" : "password"}}
 // eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjNmNDVhODQ2LWI3YjgtNGIyMy1hNjgwLWQxYWY5MmI5YTk4MCIsImlhdCI6MTYzNzg3Njg4MiwiZXhwIjoxNjM3OTYzMjgyfQ.qyV6ehy0_pKmG0kG2qJ0NlT9fL8c1kMDs5DJuQ5IRWg
@@ -52,7 +53,7 @@ router.post("/login", async (request, response) => {
         if (loginUser) {
             let passwordComparison = await bcrypt.compare(password, loginUser.passwordhash);
             if (passwordComparison) {
-                let token = jwt.sign({ id: loginUser.id }, process.env.JWT_SECRET, { expiresIn: 60 * 60 * 24 });
+                let token = jwt.sign({ id: loginUser.user_id }, process.env.JWT_SECRET, { expiresIn: 60 * 60 * 24 });
 
                 response.status(200).json({
                     user: loginUser,
@@ -75,5 +76,9 @@ router.post("/login", async (request, response) => {
         })
     }
 });
+
+router.get('/checkToken', validateJWT, async (request, response) => {
+    response.status(200).json({ message: 'Valid Token' });
+})
 
 module.exports = router;
