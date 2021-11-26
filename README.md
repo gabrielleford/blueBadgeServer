@@ -24,19 +24,41 @@ Completion Date: WIP / [completion date]
 [date]: [focused items / files]
  
 
-## Team Member #2  [NAME]
+## Team Member #2  Gabrielle Ford
 
-              GitHub, LinkedIn, Portfolio links
+    GitHub: https://github.com/gabrielleford
+    LinkedIn: https://www.linkedin.com/in/gabrielle-f-293251221/
+    Portfolio: https://gabrielleford.github.io/
 
-###Assigned Tasks
-Endpoint 1
+### Assigned Tasks
+
+Completion Date: 11/26
+
+[11/26]: Post model / post.js - built out model
+
+post/create
 Completion Date: WIP / [completion date]
-[date]: [focused items / files] */consider your commit message
 [date]: [focused items / files]
 [date]: [focused items / files]
-Ex: 11/29: Navbar.jsx – build out routing and styling.
-Endpoint 2
+
+post/:postid
 Completion Date: WIP / [completion date]
 [date]: [focused items / files]
 [date]: [focused items / files]
+
+post/:userid
+Completion Date: WIP / [completion date]
+[date]: [focused items / files]
+[date]: [focused items / files]
+
+post/edit
+Completion Date: WIP / [completion date]
+[date]: [focused items / files]
+[date]: [focused items / files]
+
+post/delete
+Completion Date: WIP / [completion date]
+[date]: [focused items / files]
+[date]: [focused items / files]
+
 *additional / optional
