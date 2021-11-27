@@ -75,6 +75,74 @@ router.get('/myposts', validateJWT, async (req, res) => {
             err: `Error: ${err}`
         });
     }
-})
+});
+
+// * Get post by id *
+router.get('/:id', validateJWT, async (req, res) => {
+    const postId = req.params.id;
+    const id = req.user_id;
+
+    try {
+        const postById = await Post.findAll({
+            where: {
+                id: postId,
+                owner_id: id
+            }
+        });
+
+        res.status(200).json(postById);
+    } catch (err) {
+        res.status(500).json({ error: `Error: ${err}`});
+    }
+});
+
+// * Update post *
+router.put('/update/:id', validateJWT, async (req, res) => {
+    const { private, title, image, description, tag } = req.body.post;
+    const postId = req.params.id;
+    const id = req.user_id;
+
+    const updatedPost = {
+      private,
+      title,
+      image,
+      description,
+      tag,
+      owner_id: id,
+    };
+
+    const postOwner = await Post.findAll({
+      where: {
+        id: postId
+      },
+    });
+
+    if (JSON.parse(JSON.stringify(postOwner))[0].owner_id === id) {
+        const query = {
+            where: {
+                id: postId,
+                owner_id: id
+            }
+        };
+
+        try {
+            const updated = await Post.update(updatedPost, query);
+
+            res.status(200).json({
+                message: 'Post updated',
+                updatedPost: updatedPost
+            })
+        } catch (err) {
+            res.status(500).json({
+                err: `Error ${err}`
+            });
+        }
+    } else {
+        res.status(403).json({
+            err: 'You can only update your own logs'
+        });
+    }
+
+});
 
 module.exports = router;
