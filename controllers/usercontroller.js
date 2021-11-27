@@ -6,7 +6,7 @@ const bcrypt = require('bcryptjs');
 const validateJWT = require("../middleware/validatejwt");
 
 // { "user" : { "email" : "test3@test.com", "password" : "password"}}
-// eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjNmNDVhODQ2LWI3YjgtNGIyMy1hNjgwLWQxYWY5MmI5YTk4MCIsImlhdCI6MTYzNzg3Njg4MiwiZXhwIjoxNjM3OTYzMjgyfQ.qyV6ehy0_pKmG0kG2qJ0NlT9fL8c1kMDs5DJuQ5IRWg
+// eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjNmNDVhODQ2LWI3YjgtNGIyMy1hNjgwLWQxYWY5MmI5YTk4MCIsImlhdCI6MTYzNzk3NzkwOSwiZXhwIjoxNjM4MDY0MzA5fQ.Vyfd5c76pqom2GzZFzalHiJHKB6IJ9x1ym9iAcgIG1Q
 
 router.post('/register', async (request, response) => {
     let { email, password } = request.body.user;
@@ -77,8 +77,11 @@ router.post("/login", async (request, response) => {
     }
 });
 
-router.get('/checkToken', validateJWT, async (request, response) => {
-    response.status(200).json({ message: 'Valid Token' });
+router.post('/checkToken', validateJWT, async (request, response) => {
+    response.status(200).json({
+        message: 'Valid Token.',
+        user_id: request.user_id
+    });
 })
 
 module.exports = router;
