@@ -12,6 +12,8 @@ router.get('/test', validateJWT, (req, res) => {
     res.send('This is a practice route!')
 })
 
+
+// * Create post *
 router.post('/create', validateJWT, async (req, res) => {
     const { private, title, image, description, tag } = req.body.post;
     const id  = req.user_id;
@@ -36,6 +38,42 @@ router.post('/create', validateJWT, async (req, res) => {
         res.status(500).json({
             message: `Failed to create post ${err}`
         })
+    }
+})
+
+// * Get all public posts *
+router.get('/', async (req, res) => {
+    try {
+        const publicPosts = await Post.findAll({
+            where: {
+                private: false
+            }
+        });
+
+        res.status(200).json(publicPosts);
+    } catch (err) {
+        res.status(500).json({
+            error: `Error: ${err}`
+        });
+    }
+});
+
+// * Get all user posts *
+router.get('/myposts', validateJWT, async (req, res) => {
+    const id = req.user_id;
+
+    try {
+        const userPosts = await Post.findAll({
+            where: {
+                owner_id: id
+            }
+        });
+
+        res.status(200).json(userPosts);
+    } catch (err) {
+        res.status(500).json({
+            err: `Error: ${err}`
+        });
     }
 })
 
