@@ -97,7 +97,7 @@ router.get('/:id', validateJWT, async (req, res) => {
 });
 
 // * Update post *
-router.put('/update/:id', validateJWT, async (req, res) => {
+router.put('/edit/:id', validateJWT, async (req, res) => {
     const { private, title, image, description, tag } = req.body.post;
     const postId = req.params.id;
     const id = req.user_id;
