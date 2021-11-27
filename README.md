@@ -15,28 +15,52 @@ Technology Used:
 
 ### Assigned Tasks
 
-Completion Date: WIP / [completion date]
-
-[11/25]: User model, user/login & user/register
-
-[date]: [focused items / files]
-
+Completion Date: WIP / [completion date]  
+[11/25]: User model, user/login & user/register  
+[date]: [focused items / files]. 
 [date]: [focused items / files]
  
 
-## Team Member #2  [NAME]
+## Team Member #2  Gabrielle Ford
 
-              GitHub, LinkedIn, Portfolio links
+            GitHub: https://github.com/gabrielleford
+            LinkedIn: https://www.linkedin.com/in/gabrielle-f-293251221/
+            Portfolio: https://gabrielleford.github.io/
 
-###Assigned Tasks
-Endpoint 1
-Completion Date: WIP / [completion date]
-[date]: [focused items / files] */consider your commit message
+### Assigned Tasks
+
+#### Post model
+Completion Date: 11/26  
+[11/26]: Post model / post.js - built out model
+
+
+#### post/create
+Completion Date: WIP / [completion date]  
+[date]: [focused items / files]  
 [date]: [focused items / files]
+
+
+#### post/:postid
+Completion Date: WIP / [completion date]  
+[date]: [focused items / files]  
 [date]: [focused items / files]
-Ex: 11/29: Navbar.jsx – build out routing and styling.
-Endpoint 2
-Completion Date: WIP / [completion date]
+
+
+#### post/:userid
+Completion Date: WIP / [completion date]  
+[date]: [focused items / files]  
 [date]: [focused items / files]
+
+
+#### post/edit
+Completion Date: WIP / [completion date]  
+[date]: [focused items / files]  
 [date]: [focused items / files]
+
+
+#### post/delete
+Completion Date: WIP / [completion date]  
+[date]: [focused items / files]  
+[date]: [focused items / files]
+
 *additional / optional
