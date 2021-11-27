@@ -2,13 +2,18 @@ const { DataTypes } = require('sequelize');
 const db = require('../db');
 
 const Post = db.define('post', {
+    // Data for whether it's private or public
+    private: {
+        type: DataTypes.BOOLEAN,
+        allowNull: false
+    },
     // Post title
     title: {
         type: DataTypes.STRING,
         allowNull: false
     },
     // Picture url
-    url: {
+    image: {
         type: DataTypes.STRING,
         allowNull: false
     },
@@ -23,10 +28,11 @@ const Post = db.define('post', {
         allowNull: false
     },
     // User id
-    owner: {
+    owner_id: {
         type: DataTypes.STRING,
         allowNull: false
     },
+    
     // hearts: {
     //     type: DataTypes.INTEGER,
     //     allowNull: false
