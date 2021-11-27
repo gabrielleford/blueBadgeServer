@@ -38,23 +38,22 @@ Completion Date: 11/26
 Completion Date: 11/26  
 [11/26]: post/create / postcontroller.js - fisnished post/create
 
+**post/** Endpoint  
+Completion Date: 11/26  
+[11/26]: post/ / postcontroller.js - finished the get all public posts endpoint
 
-**post/:postid** Endpoint  
-Completion Date: WIP / [completion date]  
-[date]: [focused items / files]  
-[date]: [focused items / files]
+**post/myposts** Endpoint  
+Completion Date: 11/26  
+[11/26]: post/myposts / postcontroller.js - finished the get all users posts endpoint
 
-
-**post/:userid** Endpoint  
-Completion Date: WIP / [completion date]  
-[date]: [focused items / files]  
-[date]: [focused items / files]
+**post/:id** Endpoint  
+Completion Date: 11/26  
+[11/26]: post/id / postcontroller.js - finished the get post by id endpoint
 
 
 **post/edit** Endpoint  
-Completion Date: WIP / [completion date]  
-[date]: [focused items / files]  
-[date]: [focused items / files]
+Completion Date: 11/26  
+[11/26]: post/edit/:id / postcontroller.js - finished the edit post endpoint
 
 
 **post/delete** Endpoint  
