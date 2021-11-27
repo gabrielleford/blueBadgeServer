@@ -29,36 +29,36 @@ Completion Date: WIP / [completion date]
 
 ### Assigned Tasks
 
-#### Post model
+**Post model**  
 Completion Date: 11/26  
 [11/26]: Post model / post.js - built out model
 
 
-#### post/create
+**post/create** Endpoint  
 Completion Date: WIP / [completion date]  
 [date]: [focused items / files]  
 [date]: [focused items / files]
 
 
-#### post/:postid
+**post/:postid** Endpoint  
 Completion Date: WIP / [completion date]  
 [date]: [focused items / files]  
 [date]: [focused items / files]
 
 
-#### post/:userid
+**post/:userid** Endpoint  
 Completion Date: WIP / [completion date]  
 [date]: [focused items / files]  
 [date]: [focused items / files]
 
 
-#### post/edit
+**post/edit** Endpoint  
 Completion Date: WIP / [completion date]  
 [date]: [focused items / files]  
 [date]: [focused items / files]
 
 
-#### post/delete
+**post/delete** Endpoint  
 Completion Date: WIP / [completion date]  
 [date]: [focused items / files]  
 [date]: [focused items / files]
