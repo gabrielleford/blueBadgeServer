@@ -18,11 +18,13 @@ const validateJWT = async (req, res, next) => {
                 process.env.JWT_SECRET
             )
             : undefined;
-        console.log(payload)
         if (payload) {
             let foundUser = await User.findOne({ where: { user_id: payload.id } });
 
             if (foundUser) {
+                //console.log(JSON.parse(JSON.stringify(foundUser, null, 2))[0])
+                console.log(foundUser.dataValues.user_id);
+                req.user_id = foundUser.dataValues.user_id;
                 req.user = foundUser;
                 next();
             } else {
