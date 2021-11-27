@@ -46,19 +46,22 @@ Completion Date: 11/26
 Completion Date: 11/26  
 [11/26]: post/myposts / postcontroller.js - finished the get all users posts endpoint
 
+**post/posts/:userid** Endpoint  
+Completion Date: 11/27  
+[11/27]: post/posts/:userid / postcontroller.js - finished the ability to view another users public posts
+
 **post/:id** Endpoint  
 Completion Date: 11/26  
 [11/26]: post/id / postcontroller.js - finished the get post by id endpoint
 
 
-**post/edit** Endpoint  
+**post/edit/:id** Endpoint  
 Completion Date: 11/26  
 [11/26]: post/edit/:id / postcontroller.js - finished the edit post endpoint
 
 
-**post/delete** Endpoint  
-Completion Date: WIP / [completion date]  
-[date]: [focused items / files]  
-[date]: [focused items / files]
+**post/delete/:id** Endpoint  
+Completion Date: WIP  
+[11/27]: post/delete/:id / postcontroller.js - finished the delete post endpoint
 
 *additional / optional
