@@ -6,10 +6,10 @@ const bcrypt = require('bcryptjs');
 const validateJWT = require("../middleware/validatejwt");
 
 // { "user" : { "email" : "test3@test.com", "password" : "password"}}
-// eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjNmNDVhODQ2LWI3YjgtNGIyMy1hNjgwLWQxYWY5MmI5YTk4MCIsImlhdCI6MTYzNzk3NzkwOSwiZXhwIjoxNjM4MDY0MzA5fQ.Vyfd5c76pqom2GzZFzalHiJHKB6IJ9x1ym9iAcgIG1Q
+// eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6ImVkYzk5NTNhLTEyZjItNDA5Mi04MGEyLThjOGY5NWJjNzRhMyIsImlhdCI6MTYzODA1MDQyNCwiZXhwIjoxNjM4MTM2ODI0fQ.chEgHtBS2DI-EL2HYhvOnHkEXARE0uVk_UmGv_hZNK4
 
 router.post('/register', async (request, response) => {
-    let { email, password } = request.body.user;
+    let { email, username, password } = request.body.user;
 
     const emailRegex = /(?:[a-z0-9!#$%&'*+/=?^_`{|}~-]+(?:\.[a-z0-9!#$%&'*+/=?^_`{|}~-]+)*|"(?:[\x01-\x08\x0b\x0c\x0e-\x1f\x21\x23-\x5b\x5d-\x7f]|\\[\x01-\x09\x0b\x0c\x0e-\x7f])*")@(?:(?:[a-z0-9](?:[a-z0-9-]*[a-z0-9])?\.)+[a-z0-9](?:[a-z0-9-]*[a-z0-9])?|\[(?:(?:25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)\.){3}(?:25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?|[a-z0-9-]*[a-z0-9]:(?:[\x01-\x08\x0b\x0c\x0e-\x1f\x21-\x5a\x53-\x7f]|\\[\x01-\x09\x0b\x0c\x0e-\x7f])+)\])/
 
@@ -18,7 +18,10 @@ router.post('/register', async (request, response) => {
     try {
         const user = await User.create({
             email,
-            passwordhash: bcrypt.hashSync(password, 13)
+            username,
+            passwordhash: bcrypt.hashSync(password, 13),
+            profileDescription: '',
+            profilePicture: {}
         });
 
         let token = jwt.sign({ id: user.user_id }, process.env.JWT_SECRET, { expiresIn: 60 * 60 * 24 });
@@ -76,6 +79,53 @@ router.post("/login", async (request, response) => {
         })
     }
 });
+
+router.put('/editDescription', validateJWT, async (request, response) => {
+    let { description } = request.body.user;
+    const id = request.user_id;
+
+    const newDescription = {
+        profileDescription: description
+    }
+
+    const query = {
+        where: {
+            user_id: id,
+        }
+    };
+
+    try {
+        await User.update(newDescription, query);
+
+        response.status(200).json({
+            message: 'Description updated',
+            updatedDesc: description
+        })
+    } catch (err) {
+        response.status(500).json({
+            err: `Error ${err}`
+        });
+    }
+})
+
+router.get('/:user_id', async (request, response) => {
+    const id = request.params.user_id;
+
+    try {
+        const userInfo = await User.findAll({
+            where: {
+                user_id: id,
+            },
+            attributes: ['profileDescription', 'profilePicture']
+        })
+        response.status(200).json(userInfo)
+    }
+    catch (error) {
+        response.status(500).json({
+            error: `Error ${error}`
+        });
+    }
+})
 
 router.post('/checkToken', validateJWT, async (request, response) => {
     response.status(200).json({
