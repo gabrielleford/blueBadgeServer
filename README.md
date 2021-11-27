@@ -35,9 +35,8 @@ Completion Date: 11/26
 
 
 **post/create** Endpoint  
-Completion Date: WIP / [completion date]  
-[date]: [focused items / files]  
-[date]: [focused items / files]
+Completion Date: 11/26  
+[11/26]: post/create / postcontroller.js - fisnished post/create
 
 
 **post/:postid** Endpoint  
