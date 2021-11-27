@@ -14,7 +14,7 @@ router.get('/test', validateJWT, (req, res) => {
 
 router.post('/create', validateJWT, async (req, res) => {
     const { private, title, image, description, tag } = req.body.post;
-    const { id } = req.user;
+    const id  = req.user_id;
     console.log(`Owner ID: ${id}`);
 
     const post = {
