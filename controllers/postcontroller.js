@@ -1,21 +1,14 @@
 const router = require('express').Router();
 const { Post } = require('../models/index');
 const validateJWT = require('../middleware/validatejwt');
-// const cloudinary = require("cloudinary").v2;
-// cloudinary.config({
-//   cloud_name: process.env.CLOUDINARY_NAME,
-//   api_key: process.env.CLOUDINARY_API_KEY,
-//   api_secret: process.env.CLOUDINARY_API_SECRET,
-// });
 
 router.get('/test', validateJWT, (req, res) => {
     res.send('This is a practice route!')
 })
 
-
 // * Create post *
 // http://localhost:3000/post/create
-// {"post" {"private": "false", "title": "fur baby", "image": "some img url", "description": "description of fur baby", "tag": "fur baby"}}
+// {"post": {"private": "false", "title": "fur baby", "image": "some img url", "description": "description of fur baby", "tag": "fur baby"}}
 router.post('/create', validateJWT, async (req, res) => {
     const { private, title, image, description, tag } = req.body.post;
     const id  = req.user_id;
@@ -124,7 +117,7 @@ router.get('/:id', validateJWT, async (req, res) => {
 
 // * Update post *
 // http://localhost:3000/edit/:id
-// {"post" {"private": "false", "title": "fur baby", "image": "some img url", "description": "updated description", "tag": "fur baby"}}
+// {"post": {"private": "false", "title": "fur baby", "image": "some img url", "description": "updated description", "tag": "fur baby"}}
 router.put('/edit/:id', validateJWT, async (req, res) => {
     const { private, title, image, description, tag } = req.body.post;
     const postId = req.params.id;

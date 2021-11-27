@@ -32,7 +32,6 @@ const Post = db.define('post', {
         type: DataTypes.STRING,
         allowNull: false
     },
-    
     // hearts: {
     //     type: DataTypes.INTEGER,
     //     allowNull: false
