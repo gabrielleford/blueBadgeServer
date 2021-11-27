@@ -15,50 +15,52 @@ Technology Used:
 
 ### Assigned Tasks
 
-Completion Date: WIP / [completion date]
-
-[11/25]: User model, user/login & user/register
-
-[date]: [focused items / files]
-
+Completion Date: WIP / [completion date]  
+[11/25]: User model, user/login & user/register  
+[date]: [focused items / files]. 
 [date]: [focused items / files]
  
 
 ## Team Member #2  Gabrielle Ford
 
-    GitHub: https://github.com/gabrielleford
-    LinkedIn: https://www.linkedin.com/in/gabrielle-f-293251221/
-    Portfolio: https://gabrielleford.github.io/
+            GitHub: https://github.com/gabrielleford
+            LinkedIn: https://www.linkedin.com/in/gabrielle-f-293251221/
+            Portfolio: https://gabrielleford.github.io/
 
 ### Assigned Tasks
 
-Completion Date: 11/26
-
+#### Post model
+Completion Date: 11/26  
 [11/26]: Post model / post.js - built out model
 
-post/create
-Completion Date: WIP / [completion date]
-[date]: [focused items / files]
+
+#### post/create
+Completion Date: WIP / [completion date]  
+[date]: [focused items / files]  
 [date]: [focused items / files]
 
-post/:postid
-Completion Date: WIP / [completion date]
-[date]: [focused items / files]
+
+#### post/:postid
+Completion Date: WIP / [completion date]  
+[date]: [focused items / files]  
 [date]: [focused items / files]
 
-post/:userid
-Completion Date: WIP / [completion date]
-[date]: [focused items / files]
+
+#### post/:userid
+Completion Date: WIP / [completion date]  
+[date]: [focused items / files]  
 [date]: [focused items / files]
 
-post/edit
-Completion Date: WIP / [completion date]
-[date]: [focused items / files]
+
+#### post/edit
+Completion Date: WIP / [completion date]  
+[date]: [focused items / files]  
 [date]: [focused items / files]
 
-post/delete
-Completion Date: WIP / [completion date]
-[date]: [focused items / files]
+
+#### post/delete
+Completion Date: WIP / [completion date]  
+[date]: [focused items / files]  
 [date]: [focused items / files]
 
 *additional / optional
