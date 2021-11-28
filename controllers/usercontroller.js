@@ -21,7 +21,7 @@ router.post('/register', async (request, response) => {
             username,
             passwordhash: bcrypt.hashSync(password, 13),
             profileDescription: '',
-            profilePicture: {}
+            profilePicture: ''
         });
 
         let token = jwt.sign({ id: user.user_id }, process.env.JWT_SECRET, { expiresIn: 60 * 60 * 24 });
@@ -80,12 +80,13 @@ router.post("/login", async (request, response) => {
     }
 });
 
-router.put('/editDescription', validateJWT, async (request, response) => {
-    let { description } = request.body.user;
+router.put('/edit', validateJWT, async (request, response) => {
+    let { description, imageURL } = request.body.user;
     const id = request.user_id;
 
     const newDescription = {
-        profileDescription: description
+        profileDescription: description,
+        profilePicture: imageURL
     }
 
     const query = {
@@ -98,8 +99,9 @@ router.put('/editDescription', validateJWT, async (request, response) => {
         await User.update(newDescription, query);
 
         response.status(200).json({
-            message: 'Description updated',
-            updatedDesc: description
+            message: 'Updated',
+            updatedDesc: description,
+            updatedURL: imageURL
         })
     } catch (err) {
         response.status(500).json({
