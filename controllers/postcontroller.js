@@ -134,8 +134,27 @@ router.get('/posts/all/:username', validateJWT, async (req, res) => {
 })
 
 // * Get post by id *
-// http://localhost:3000/post/:id
-router.get('/:id', validateJWT, async (req, res) => {
+//http://localhost:3000/post/:id
+router.get('/:id', async (req, res) => {
+    const postId = req.params.id;
+
+    try {
+        const postById = await Post.findAll({
+            where: {
+                private: false,
+                id: postId,
+            }
+        });
+
+        res.status(200).json(postById);
+    } catch (err) {
+        res.status(500).json({ error: `Error: ${err}`});
+    }
+});
+
+// * Get public & private post by id *
+// http://localhost:3000/post/validated/:id
+router.get('/validated/:id', validateJWT, async (req, res) => {
     const postId = req.params.id;
 
     try {
