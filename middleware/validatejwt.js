@@ -22,8 +22,7 @@ const validateJWT = async (req, res, next) => {
             let foundUser = await User.findOne({ where: { user_id: payload.id } });
 
             if (foundUser) {
-                //console.log(JSON.parse(JSON.stringify(foundUser, null, 2))[0])
-                //console.log(foundUser.dataValues.user_id);
+                req.username = foundUser.dataValues.username;
                 req.user_id = foundUser.dataValues.user_id;
                 req.user = foundUser;
                 next();
