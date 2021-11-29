@@ -23,7 +23,7 @@ const validateJWT = async (req, res, next) => {
 
             if (foundUser) {
                 //console.log(JSON.parse(JSON.stringify(foundUser, null, 2))[0])
-                console.log(foundUser.dataValues.user_id);
+                //console.log(foundUser.dataValues.user_id);
                 req.user_id = foundUser.dataValues.user_id;
                 req.user = foundUser;
                 next();
