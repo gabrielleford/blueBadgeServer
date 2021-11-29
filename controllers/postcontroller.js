@@ -102,10 +102,9 @@ router.get('/:id', validateJWT, async (req, res) => {
     const id = req.user_id;
 
     try {
-        const postById = await Post.findOne({
+        const postById = await Post.findAll({
             where: {
                 id: postId,
-                owner_id: id
             }
         });
 
