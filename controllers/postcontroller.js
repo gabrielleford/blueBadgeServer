@@ -38,7 +38,7 @@ router.post('/create', validateJWT, async (req, res) => {
 })
 
 // * Get all public posts *
-// http://localhost:3000/post/
+// http://localhost:3000/post/public
 router.get('/', async (req, res) => {
     try {
         const publicPosts = await Post.findAll({
@@ -55,11 +55,9 @@ router.get('/', async (req, res) => {
     }
 });
 
-// * Get all posts when logged in *
-// http://localhost:3000/post/posts
-router.get('/posts', async (req, res) => {
-    const id = req.user_id;
-
+// * Get all posts (public & private) when logged in *
+// http://localhost:3000/post/allposts
+router.get('/allposts', validateJWT, async (req, res) => {
     try {
         const allPosts = await Post.findAll();
 
