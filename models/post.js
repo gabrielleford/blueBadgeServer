@@ -3,6 +3,11 @@ const db = require('../db');
 
 const Post = db.define('post', {
     // Data for whether it's private or public
+    post_id: {
+        type: DataTypes.UUID,
+        defaultValue: DataTypes.UUIDV4,
+        primaryKey: true
+    },
     private: {
         type: DataTypes.BOOLEAN,
         allowNull: false
@@ -36,11 +41,11 @@ const Post = db.define('post', {
     username: {
         type: DataTypes.STRING,
         allowNull: false
-    }
-    // hearts: {
-    //     type: DataTypes.INTEGER,
-    //     allowNull: false
-    // },
+    },
+    likes: {
+        type: DataTypes.INTEGER,
+        allowNull: false
+    },
     // comments: {
     //     type: DataTypes.JSON
     // }

@@ -28,6 +28,10 @@ const User = db.define('user', {
     profilePicture: {
         type: DataTypes.STRING,
         allowNull: true
+    },
+    likedPosts: {
+        type: DataTypes.ARRAY(DataTypes.STRING),
+        allowNull: true
     }
 });
 
