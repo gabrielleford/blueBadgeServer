@@ -1,24 +1,28 @@
 
 # InstaPet Server
 
-[Brief description of project build]  *This will be different between client and server.  It can be detailed as you see fit (look over other ReadMe files for examples)
+Server for InstaPet app. Users can upload photos, tag them with one of 3 tags, like posts, edit their posts, and delete their posts.
 
 Technology Used:
 
-              HTML 5, CSS 3, Node.js, React
+              PostGreSQL, Sequelize
 
 ## Team Member #1  Katie Sallows
 
-              https://github.com/ksallows
-              https://ksallows.github.io/
-              https://www.linkedin.com/in/katie-sallows-b7b6b6222/
+[GitHub](https://github.com/ksallows)
+
+[Portfolio](https://ksallows.github.io/)
+
+[LinkedIn](https://www.linkedin.com/in/katie-sallows-b7b6b6222/)
 
 ### Assigned Tasks
 
-Completion Date: WIP / [completion date]  
-[11/25]: User model, user/login & user/register  
-[date]: [focused items / files]. 
-[date]: [focused items / files]
+    Completed   Task
+    ---         ---
+    11.25       user model
+    11.25       user register, login, checkToken endpoint
+    11.28       user edit endpoint
+    12.01       post liked endpoint
  
 
 ## Team Member #2  Gabrielle Ford
