@@ -1,17 +1,15 @@
 const router = require('express').Router();
-const { Post } = require('../models/index');
+const { Post, User } = require('../models/index');
 const validateJWT = require('../middleware/validatejwt');
-
-router.get('/test', validateJWT, (req, res) => {
-    res.send('This is a practice route!')
-})
+const { route } = require('./usercontroller');
+const sequelize = require("sequelize");
 
 // * Create post *
 // http://localhost:3000/post/create
 // {"post": {"private": "false", "title": "fur baby", "image": "some img url", "description": "description of fur baby", "tag": "fur baby"}}
 router.post('/create', validateJWT, async (req, res) => {
     const { private, title, image, description, tag } = req.body.post;
-    const id  = req.user_id;
+    const id = req.user_id;
     const username = req.username;
     console.log(`Owner ID: ${id}`);
 
@@ -22,7 +20,8 @@ router.post('/create', validateJWT, async (req, res) => {
         description,
         tag,
         owner_id: id,
-        username: username
+        username: username,
+        likes: 0
     }
 
     try {
@@ -68,26 +67,6 @@ router.get('/posts', async (req, res) => {
     } catch (err) {
         res.status(500).json({
             error: `Error: ${err}`
-        });
-    }
-});
-
-// * Get all user posts *
-// http://localhost:3000/post/myposts
-router.get('/myposts', validateJWT, async (req, res) => {
-    const id = req.user_id;
-
-    try {
-        const userPosts = await Post.findAll({
-            where: {
-                owner_id: id
-            }
-        });
-
-        res.status(200).json(userPosts);
-    } catch (err) {
-        res.status(500).json({
-            err: `Error: ${err}`
         });
     }
 });
@@ -148,7 +127,7 @@ router.get('/:id', async (req, res) => {
 
         res.status(200).json(postById);
     } catch (err) {
-        res.status(500).json({ error: `Error: ${err}`});
+        res.status(500).json({ error: `Error: ${err}` });
     }
 });
 
@@ -166,7 +145,7 @@ router.get('/validated/:id', validateJWT, async (req, res) => {
 
         res.status(200).json(postById);
     } catch (err) {
-        res.status(500).json({ error: `Error: ${err}`});
+        res.status(500).json({ error: `Error: ${err}` });
     }
 });
 
@@ -220,18 +199,18 @@ router.put('/edit/:id', validateJWT, async (req, res) => {
     const id = req.user_id;
 
     const updatedPost = {
-      private,
-      title,
-      image,
-      description,
-      tag,
-      owner_id: id,
+        private,
+        title,
+        image,
+        description,
+        tag,
+        owner_id: id,
     };
 
     const postOwner = await Post.findAll({
-      where: {
-        id: postId
-      },
+        where: {
+            id: postId
+        },
     });
 
     if (JSON.parse(JSON.stringify(postOwner))[0].owner_id === id) {
@@ -298,5 +277,40 @@ router.delete('/delete/:id', validateJWT, async (req, res) => {
         });
     }
 });
+
+// * add/remove like from post and user
+router.put('/like/:postid', validateJWT, async (request, result) => {
+    const postID = request.params.postid;
+    const userID = request.user_id;
+
+    const userInfo = await User.findAll({
+        where: {
+            user_id: userID
+        }
+    });
+
+    try {
+        if (JSON.parse(JSON.stringify(userInfo))[0].likedPosts.includes(postID)) {
+            Post.increment('likes', { by: -1, where: { post_id: postID } })
+            User.update(
+                { 'likedPosts': sequelize.fn('array_remove', sequelize.col('likedPosts'), postID) },
+                { 'where': { 'user_id': userID } }
+            );
+            result.status(200).json({ message: 'Like removed' })
+        }
+        else {
+            Post.increment('likes', { by: 1, where: { post_id: postID } })
+            User.update(
+                { 'likedPosts': sequelize.fn('array_append', sequelize.col('likedPosts'), postID) },
+                { 'where': { 'user_id': userID } }
+            );
+            result.status(200).json({ message: 'Like added' })
+        }
+    } catch (error) {
+        result.status(500).json({
+            err: `Error ${error}`
+        });
+    }
+})
 
 module.exports = router;
