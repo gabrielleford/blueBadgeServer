@@ -4,6 +4,26 @@ const validateJWT = require('../middleware/validatejwt');
 const { route } = require('./usercontroller');
 const sequelize = require("sequelize");
 
+// * get all public posts sorted by likes descending
+router.get('/toplikes', async (request, result) => {
+    try {
+        const postsByLikes = await Post.findAll({
+            where: {
+                private: false
+            },
+            order: [
+                ['likes', 'DESC']
+            ]
+        });
+
+        result.status(200).json(postsByLikes);
+    } catch (error) {
+        result.status(500).json({
+            error: `Error: ${error}`
+        });
+    }
+});
+
 // * Create post *
 // http://localhost:3000/post/create
 // {"post": {"private": "false", "title": "fur baby", "image": "some img url", "description": "description of fur baby", "tag": "fur baby"}}
@@ -35,7 +55,7 @@ router.post('/create', validateJWT, async (req, res) => {
             message: `Failed to create post ${err}`
         })
     }
-})
+});
 
 // * Get all public posts *
 // http://localhost:3000/post/
@@ -108,7 +128,7 @@ router.get('/posts/all/:username', validateJWT, async (req, res) => {
             err: `Error: ${err}`
         })
     }
-})
+});
 
 // * Get post by id *
 //http://localhost:3000/post/:id
@@ -276,6 +296,8 @@ router.delete('/delete/:id', validateJWT, async (req, res) => {
     }
 });
 
+
+
 // * add/remove like from post and user
 router.put('/like/:postid', validateJWT, async (request, result) => {
     const postID = request.params.postid;
@@ -307,26 +329,6 @@ router.put('/like/:postid', validateJWT, async (request, result) => {
     } catch (error) {
         result.status(500).json({
             err: `Error ${error}`
-        });
-    }
-})
-
-// * get all public posts sorted by likes descending
-router.get('/likes', async (request, result) => {
-    try {
-        const postsByLikes = await Post.findAll({
-            where: {
-                private: false
-            },
-            order: [
-                ['likes', 'DESC']
-            ]
-        });
-
-        res.status(200).json(postsByLikes);
-    } catch (err) {
-        res.status(500).json({
-            error: `Error: ${err}`
         });
     }
 })
