@@ -121,7 +121,7 @@ router.get('/:id', async (req, res) => {
         const postById = await Post.findAll({
             where: {
                 private: false,
-                id: postId,
+                post_id: postId,
             }
         });
 
@@ -139,7 +139,7 @@ router.get('/validated/:id', validateJWT, async (req, res) => {
     try {
         const postById = await Post.findAll({
             where: {
-                id: postId,
+                post_id: postId,
             }
         });
 
@@ -209,7 +209,7 @@ router.put('/edit/:id', validateJWT, async (req, res) => {
 
     const postOwner = await Post.findAll({
         where: {
-            id: postId
+            post_id: postId
         },
     });
 
@@ -248,14 +248,14 @@ router.delete('/delete/:id', validateJWT, async (req, res) => {
 
     const postOwner = await Post.findAll({
         where: {
-            id: postId,
+            post_id: postId,
         }
     });
 
     if (JSON.parse(JSON.stringify(postOwner))[0].owner_id === id) {
         const query = {
             where: {
-                id: postId,
+                post_id: postId,
                 owner_id: id
             }
         };
