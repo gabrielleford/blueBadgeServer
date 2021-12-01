@@ -38,7 +38,7 @@ router.post('/create', validateJWT, async (req, res) => {
 })
 
 // * Get all public posts *
-// http://localhost:3000/post/public
+// http://localhost:3000/post/
 router.get('/', async (req, res) => {
     try {
         const publicPosts = await Post.findAll({
@@ -307,6 +307,26 @@ router.put('/like/:postid', validateJWT, async (request, result) => {
     } catch (error) {
         result.status(500).json({
             err: `Error ${error}`
+        });
+    }
+})
+
+// * get all public posts sorted by likes descending
+router.get('/likes', async (request, result) => {
+    try {
+        const postsByLikes = await Post.findAll({
+            where: {
+                private: false
+            },
+            order: [
+                ['likes', 'DESC']
+            ]
+        });
+
+        res.status(200).json(postsByLikes);
+    } catch (err) {
+        res.status(500).json({
+            error: `Error: ${err}`
         });
     }
 })
