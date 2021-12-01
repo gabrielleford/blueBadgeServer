@@ -132,7 +132,8 @@ router.get('/:user_id', async (request, response) => {
 router.post('/checkToken', validateJWT, async (request, response) => {
     response.status(200).json({
         message: 'Valid Token.',
-        user_id: request.user_id
+        user_id: request.user_id,
+        username: request.username
     });
 })
 
