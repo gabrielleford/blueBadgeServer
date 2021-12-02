@@ -79,7 +79,11 @@ router.get('/', async (req, res) => {
 // http://localhost:3000/post/allposts
 router.get('/allposts', validateJWT, async (req, res) => {
     try {
-        const allPosts = await Post.findAll();
+        const allPosts = await Post.findAll({
+            order: [
+                ['createdAt', 'DESC']
+            ]
+        });
 
         res.status(200).json(allPosts);
     } catch (err) {
@@ -99,7 +103,10 @@ router.get('/posts/:username', async (req, res) => {
             where: {
                 private: false,
                 username: username
-            }
+            },
+            order: [
+                ['createdAt', 'DESC']
+            ]
         });
 
         res.status(200).json(userPosts);
@@ -119,7 +126,10 @@ router.get('/posts/all/:username', validateJWT, async (req, res) => {
         const userPosts = await Post.findAll({
             where: {
                 username: username
-            }
+            },
+            order: [
+                ['createdAt', 'DESC']
+            ]
         })
 
         res.status(200).json(userPosts);
@@ -177,7 +187,10 @@ router.get('/tag/:tag', async (req, res) => {
             where: {
                 private: false,
                 tag: tag
-            }
+            },
+            order: [
+                ['createdAt', 'DESC']
+            ]
         });
 
         res.status(200).json(postsByTag);
@@ -197,7 +210,10 @@ router.get('/tag/all/:tag', validateJWT, async (req, res) => {
         const postsByTag = await Post.findAll({
             where: {
                 tag: tag
-            }
+            },
+            order: [
+                ['createdAt', 'DESC']
+            ]
         });
 
         res.status(200).json(postsByTag);
