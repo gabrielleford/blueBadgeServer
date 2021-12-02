@@ -212,17 +212,14 @@ router.get('/tag/all/:tag', validateJWT, async (req, res) => {
 // http://localhost:3000/edit/:id
 // {"post": {"private": "false", "title": "fur baby", "image": "some img url", "description": "updated description", "tag": "fur baby"}}
 router.put('/edit/:id', validateJWT, async (req, res) => {
-    const { private, title, image, description, tag } = req.body.post;
+    const { private, title, description } = req.body.post;
     const postId = req.params.id;
     const id = req.user_id;
 
     const updatedPost = {
         private,
         title,
-        image,
         description,
-        tag,
-        owner_id: id,
     };
 
     const postOwner = await Post.findAll({
