@@ -113,7 +113,34 @@ router.put('/edit', validateJWT, async (request, response) => {
             err: `Error ${err}`
         });
     }
-})
+});
+
+router.get('/likes', validateJWT, async (request, response) => {
+    const id = request.user_id;
+
+    try {
+        const userLikes = await User.findAll({
+            where: {
+                user_id: id,
+            },
+            attributes: ['likedPosts']
+        })
+        response.status(200).json(userLikes)
+    }
+    catch (error) {
+        response.status(500).json({
+            error: `Error ${error}`
+        });
+    }
+});
+
+router.post('/checkToken', validateJWT, async (request, response) => {
+    response.status(200).json({
+        message: 'Valid Token.',
+        user_id: request.user_id,
+        username: request.username
+    });
+});
 
 router.get('/:user_id', async (request, response) => {
     const id = request.params.user_id;
@@ -132,14 +159,6 @@ router.get('/:user_id', async (request, response) => {
             error: `Error ${error}`
         });
     }
-})
-
-router.post('/checkToken', validateJWT, async (request, response) => {
-    response.status(200).json({
-        message: 'Valid Token.',
-        user_id: request.user_id,
-        username: request.username
-    });
-})
+});
 
 module.exports = router;
