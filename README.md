@@ -22,7 +22,8 @@ Technology Used:
     11.25       user model
     11.25       user register, login, checkToken endpoint
     11.28       user edit endpoint
-    12.01       post liked endpoint
+    12.01       post like endpoint
+    12.02       user get likes endpoint
  
 
 ## Team Member #2  Gabrielle Ford
