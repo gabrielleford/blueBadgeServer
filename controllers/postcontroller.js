@@ -247,7 +247,7 @@ router.put('/edit/:id', validateJWT, async (req, res) => {
     if (JSON.parse(JSON.stringify(postOwner))[0].owner_id === id) {
         const query = {
             where: {
-                id: postId,
+                post_id: postId,
                 owner_id: id
             }
         };
