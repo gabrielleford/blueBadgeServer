@@ -1,60 +1,72 @@
 
 # InstaPet Server
 
-[Brief description of project build]  *This will be different between client and server.  It can be detailed as you see fit (look over other ReadMe files for examples)
+Server for InstaPet app. Users can upload photos, tag them with one of 3 tags, like posts, edit their posts, and delete their posts.
 
 Technology Used:
 
-              [ note technology and purposes ]
+              PostGreSQL, Sequelize
 
-Team Member #1  [NAME]
+## Team Member #1  Katie Sallows
 
-              GitHub, LinkedIn, Portfolio links
+[GitHub](https://github.com/ksallows)
 
-Assigned Tasks
-Endpoint 1
-Completion Date: WIP / [completion date]
-[date]: [focused items / files] */consider your commit message
-[date]: [focused items / files]
-[date]: [focused items / files]
-Ex: 11/29: Navbar.jsx – build out routing and styling.
-Endpoint 2
-Completion Date: WIP / [completion date]
-[date]: [focused items / files]
-[date]: [focused items / files]
-*additional / optional
+[Portfolio](https://ksallows.github.io/)
+
+[LinkedIn](https://www.linkedin.com/in/katie-sallows-b7b6b6222/)
+
+### Assigned Tasks
+
+    Completed   Task
+    ---         ---
+    11.25       user model
+    11.25       user register, login, checkToken endpoint
+    11.28       user edit endpoint
+    12.01       post like endpoint
+    12.02       user get likes endpoint
  
 
-Team Member #2  [NAME]
+## Team Member #2  Gabrielle Ford
 
-              GitHub, LinkedIn, Portfolio links
+            GitHub: https://github.com/gabrielleford
+            LinkedIn: https://www.linkedin.com/in/gabrielle-f-293251221/
+            Portfolio: https://gabrielleford.github.io/
 
-Assigned Tasks
-Endpoint 1
-Completion Date: WIP / [completion date]
-[date]: [focused items / files] */consider your commit message
-[date]: [focused items / files]
-[date]: [focused items / files]
-Ex: 11/29: Navbar.jsx – build out routing and styling.
-Endpoint 2
-Completion Date: WIP / [completion date]
-[date]: [focused items / files]
-[date]: [focused items / files]
+### Assigned Tasks
+
+**Post model**  
+Completion Date: 11/26  
+[11/26]: Post model / post.js - built out model
+
+
+**post/create** Endpoint  
+Completion Date: 11/26  
+[11/26]: post/create / postcontroller.js - fisnished post/create
+
+**post/** Endpoint  
+Completion Date: 11/26  
+[11/26]: post/ / postcontroller.js - finished the get all public posts endpoint
+
+**post/myposts** Endpoint  
+Completion Date: 11/26  
+[11/26]: post/myposts / postcontroller.js - finished the get all users posts endpoint
+
+**post/posts/:userid** Endpoint  
+Completion Date: 11/27  
+[11/27]: post/posts/:userid / postcontroller.js - finished the ability to view another users public posts
+
+**post/:id** Endpoint  
+Completion Date: 11/26  
+[11/26]: post/id / postcontroller.js - finished the get post by id endpoint
+
+
+**post/edit/:id** Endpoint  
+Completion Date: 11/26  
+[11/26]: post/edit/:id / postcontroller.js - finished the edit post endpoint
+
+
+**post/delete/:id** Endpoint  
+Completion Date: WIP  
+[11/27]: post/delete/:id / postcontroller.js - finished the delete post endpoint
+
 *additional / optional
- 
-
-Team Member #3  [NAME]
-
-              GitHub, LinkedIn, and Portfolio links
-
-Assigned Tasks
-Endpoint 1
-Completion Date: WIP / [completion date]
-[date]: [focused items / files] */consider your commit message
-[date]: [focused items / files]
-[date]: [focused items / files]
-Ex: 11/29: Navbar.jsx – build out routing and styling.
-Endpoint 2
-Completion Date: WIP / [completion date]
-[date]: [focused items / files]
-[date]: [focused items / files]
