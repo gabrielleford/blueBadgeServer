@@ -63,7 +63,7 @@ router.post('/create', validateJWT, async (req, res) => {
 
 // * Get all public posts *
 // http://localhost:3000/post/
-router.get('/:offset', async (req, res) => {
+router.get('/:offset?', async (req, res) => {
     let offset = req.params.offset;
     try {
         const publicPosts = await Post.findAll({
@@ -72,7 +72,10 @@ router.get('/:offset', async (req, res) => {
             },
             limit: 12,
             offset: offset,
-            subQuery: false
+            subQuery: false,
+            order: [
+                ['createdAt', 'DESC']
+            ]
         });
 
         res.status(200).json(publicPosts);
@@ -85,7 +88,7 @@ router.get('/:offset', async (req, res) => {
 
 // * Get all posts (public & private) when logged in *
 // http://localhost:3000/post/allposts
-router.get('/allposts/:offset', validateJWT, async (req, res) => {
+router.get('/allposts/:offset?', validateJWT, async (req, res) => {
     let offset = req.params.offset;
     try {
         const allPosts = await Post.findAll({

@@ -1,5 +1,23 @@
-const { Sequelize } = require('sequelize');
+const { Sequelize } = require("sequelize/dist");
 
-const db = new Sequelize("postgres://postgres:7990ddc8f06d4325a4e16e129363da73@localhost:5432/instapet");
+const db = new Sequelize(
+  process.env.DATABASE_URL
+  ||
+  `postgresql://postgres:${process.env.PASS}@localhost/instapet`,
+  process.env.HOST == 'local' ?
+    {
+      dialect: 'postgres'
+    } :
+    {
+
+      dialect: 'postgres',
+      dialectOptions: {
+        ssl: {
+          require: true,
+          rejectUnauthorized: false
+        }
+      }
+    }
+)
 
 module.exports = db;
