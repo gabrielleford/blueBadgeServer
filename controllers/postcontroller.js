@@ -64,7 +64,10 @@ router.get('/', async (req, res) => {
         const publicPosts = await Post.findAll({
             where: {
                 private: false
-            }
+            },
+            order: [
+                ['createdAt', 'DESC']
+            ]
         });
 
         res.status(200).json(publicPosts);
