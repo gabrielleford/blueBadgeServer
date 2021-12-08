@@ -75,7 +75,6 @@ router.get('/:offset?', async (req, res) => {
             subQuery: false,
             order: [
                 ['createdAt', 'DESC']
-            ]
         });
 
         res.status(200).json(publicPosts);
