@@ -5,7 +5,8 @@ const { route } = require('./usercontroller');
 const sequelize = require("sequelize");
 
 // * get all public posts sorted by likes descending
-router.get('/toplikes', async (request, result) => {
+router.get('/toplikes/:offset', async (request, result) => {
+    let offset = request.params.offset;
     try {
         const postsByLikes = await Post.findAll({
             where: {
@@ -13,7 +14,10 @@ router.get('/toplikes', async (request, result) => {
             },
             order: [
                 ['likes', 'DESC']
-            ]
+            ],
+            limit: 12,
+            offset: offset,
+            subQuery: false
         });
 
         result.status(200).json(postsByLikes);
@@ -59,12 +63,16 @@ router.post('/create', validateJWT, async (req, res) => {
 
 // * Get all public posts *
 // http://localhost:3000/post/
-router.get('/', async (req, res) => {
+router.get('/:offset?', async (req, res) => {
+    let offset = req.params.offset;
     try {
         const publicPosts = await Post.findAll({
             where: {
                 private: false
             },
+            limit: 12,
+            offset: offset,
+            subQuery: false,
             order: [
                 ['createdAt', 'DESC']
             ]
@@ -80,12 +88,16 @@ router.get('/', async (req, res) => {
 
 // * Get all posts (public & private) when logged in *
 // http://localhost:3000/post/allposts
-router.get('/allposts', validateJWT, async (req, res) => {
+router.get('/allposts/:offset?', validateJWT, async (req, res) => {
+    let offset = req.params.offset;
     try {
         const allPosts = await Post.findAll({
             order: [
                 ['createdAt', 'DESC']
-            ]
+            ],
+            limit: 12,
+            offset: offset,
+            subQuery: false
         });
 
         res.status(200).json(allPosts);
@@ -98,7 +110,8 @@ router.get('/allposts', validateJWT, async (req, res) => {
 
 // * Get other users' public posts
 // http://localhost:3000/post/posts/:username
-router.get('/posts/:username', async (req, res) => {
+router.get('/posts/:username/:offset', async (req, res) => {
+    let offset = req.params.offset;
     const username = req.params.username;
 
     try {
@@ -109,7 +122,10 @@ router.get('/posts/:username', async (req, res) => {
             },
             order: [
                 ['createdAt', 'DESC']
-            ]
+            ],
+            limit: 12,
+            offset: offset,
+            subQuery: false
         });
 
         res.status(200).json(userPosts);
@@ -122,7 +138,8 @@ router.get('/posts/:username', async (req, res) => {
 
 // * Get all of another user's posts *
 // http://localhost:3000/post/posts/all/:username
-router.get('/posts/all/:username', validateJWT, async (req, res) => {
+router.get('/posts/all/:username/:offset', validateJWT, async (req, res) => {
+    let offset = req.params.offset;
     const username = req.params.username;
 
     try {
@@ -132,7 +149,10 @@ router.get('/posts/all/:username', validateJWT, async (req, res) => {
             },
             order: [
                 ['createdAt', 'DESC']
-            ]
+            ],
+            limit: 12,
+            offset: offset,
+            subQuery: false
         })
 
         res.status(200).json(userPosts);
@@ -182,8 +202,8 @@ router.get('/validated/:id', validateJWT, async (req, res) => {
 
 // * Get posts by tag *
 //http://localhost:3000/post/tag/:tag
-router.get('/tag/:tag', async (req, res) => {
-    const tag = req.params.tag;
+router.get('/tag/:tag/:offset', async (req, res) => {
+    let offset = req.params.offset
 
     try {
         const postsByTag = await Post.findAll({
@@ -193,7 +213,10 @@ router.get('/tag/:tag', async (req, res) => {
             },
             order: [
                 ['createdAt', 'DESC']
-            ]
+            ],
+            limit: 12,
+            offset: offset,
+            subQuery: false
         });
 
         res.status(200).json(postsByTag);
@@ -206,7 +229,8 @@ router.get('/tag/:tag', async (req, res) => {
 
 // * Get public & private posts by tag *
 // http://localhost:3000/post/tag/all/:tag
-router.get('/tag/all/:tag', validateJWT, async (req, res) => {
+router.get('/tag/all/:tag/:offset', validateJWT, async (req, res) => {
+    let offset = req.params.offset
     const tag = req.params.tag;
 
     try {
@@ -216,7 +240,9 @@ router.get('/tag/all/:tag', validateJWT, async (req, res) => {
             },
             order: [
                 ['createdAt', 'DESC']
-            ]
+            ],
+            limit: 12,
+            offset: offset
         });
 
         res.status(200).json(postsByTag);

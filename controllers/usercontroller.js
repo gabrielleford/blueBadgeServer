@@ -142,13 +142,13 @@ router.post('/checkToken', validateJWT, async (request, response) => {
     });
 });
 
-router.get('/:user_id', async (request, response) => {
-    const id = request.params.user_id;
+router.get('/:username', async (request, response) => {
+    const username = request.params.username;
 
     try {
         const userInfo = await User.findAll({
             where: {
-                user_id: id,
+                username: username,
             },
             attributes: ['profileDescription', 'profilePicture']
         })

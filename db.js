@@ -10,14 +10,14 @@ const db = new Sequelize(
 } :
  {
 
-  dialect: 'postgres',
-  dialectOptions: {
-    ssl: {
-      require: true,
-      rejectUnauthorized: false
+      dialect: 'postgres',
+      dialectOptions: {
+        ssl: {
+          require: true,
+          rejectUnauthorized: false
+        }
+      }
     }
-  }
-}
-)   
+)
 
 module.exports = db;
