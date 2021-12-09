@@ -161,4 +161,23 @@ router.get('/:username', async (request, response) => {
     }
 });
 
+router.get('/usernameFromId/:id', async (request, response) => {
+    const user_id = request.params.id;
+
+    try {
+        let username = await User.findAll({
+            where: {
+                user_id: user_id
+            },
+            attributes: ['username']
+        })
+        response.status(200).json(username)
+    }
+    catch (error) {
+        response.status(500).json({
+            error: `Error ${error}`
+        });
+    }
+})
+
 module.exports = router;

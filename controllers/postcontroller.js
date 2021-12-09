@@ -5,7 +5,7 @@ const { route } = require('./usercontroller');
 const sequelize = require("sequelize");
 
 // * get all public posts sorted by likes descending
-router.get('/toplikes/:offset', async (request, result) => {
+router.get('/toplikes/:offset?', async (request, result) => {
     let offset = request.params.offset;
     try {
         const postsByLikes = await Post.findAll({
@@ -110,7 +110,7 @@ router.get('/allposts/:offset?', validateJWT, async (req, res) => {
 
 // * Get other users' public posts
 // http://localhost:3000/post/posts/:username
-router.get('/posts/:username/:offset', async (req, res) => {
+router.get('/posts/:username/:offset?', async (req, res) => {
     let offset = req.params.offset;
     const username = req.params.username;
 
@@ -138,7 +138,7 @@ router.get('/posts/:username/:offset', async (req, res) => {
 
 // * Get all of another user's posts *
 // http://localhost:3000/post/posts/all/:username
-router.get('/posts/all/:username/:offset', validateJWT, async (req, res) => {
+router.get('/posts/all/:username/:offset?', validateJWT, async (req, res) => {
     let offset = req.params.offset;
     const username = req.params.username;
 
