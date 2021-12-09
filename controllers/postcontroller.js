@@ -165,8 +165,10 @@ router.get('/posts/all/:username/:offset', validateJWT, async (req, res) => {
 
 // * Get post by id *
 //http://localhost:3000/post/:id
-router.get('/:id', async (req, res) => {
+router.get('/getOne/:id', async (req, res) => {
     const postId = req.params.id;
+    console.log(req.params);
+    console.log(`POST ID: ${postId}`);
 
     try {
         const postById = await Post.findAll({
@@ -202,8 +204,9 @@ router.get('/validated/:id', validateJWT, async (req, res) => {
 
 // * Get posts by tag *
 //http://localhost:3000/post/tag/:tag
-router.get('/tag/:tag/:offset', async (req, res) => {
+router.get('/tag/:tag/:offset?', async (req, res) => {
     let offset = req.params.offset
+    const tag = req.params.tag;
 
     try {
         const postsByTag = await Post.findAll({
@@ -229,7 +232,7 @@ router.get('/tag/:tag/:offset', async (req, res) => {
 
 // * Get public & private posts by tag *
 // http://localhost:3000/post/tag/all/:tag
-router.get('/tag/all/:tag/:offset', validateJWT, async (req, res) => {
+router.get('/tag/all/:tag/:offset?', validateJWT, async (req, res) => {
     let offset = req.params.offset
     const tag = req.params.tag;
 
