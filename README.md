@@ -24,6 +24,7 @@ Technology Used:
     11.28       user edit endpoint
     12.01       post like endpoint
     12.02       user get likes endpoint
+    12.04       offset added to all getposts endpoints
  
 
 ## Team Member #2  Gabrielle Ford
