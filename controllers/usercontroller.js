@@ -179,22 +179,42 @@ router.get("/:username", async (request, response) => {
   }
 });
 
-router.get("/usernameFromId/:id", async (request, response) => {
-  const user_id = request.params.id;
+router.get('/:username', async (request, response) => {
+    const username = request.params.username;
 
-  try {
-    let username = await User.findAll({
-      where: {
-        user_id: user_id,
-      },
-      attributes: ["username"],
-    });
-    response.status(200).json(username);
-  } catch (error) {
-    response.status(500).json({
-      error: `Error ${error}`,
-    });
-  }
+    try {
+        const userInfo = await User.findAll({
+            where: {
+                username: username,
+            },
+            attributes: ['profileDescription', 'profilePicture']
+        })
+        response.status(200).json(userInfo)
+    }
+    catch (error) {
+        response.status(500).json({
+            error: `Error ${error}`
+        });
+    }
 });
+
+router.get('/usernameFromId/:id', async (request, response) => {
+    const user_id = request.params.id;
+
+    try {
+        let username = await User.findAll({
+            where: {
+                user_id: user_id
+            },
+            attributes: ['username']
+        })
+        response.status(200).json(username)
+    }
+    catch (error) {
+        response.status(500).json({
+            error: `Error ${error}`
+        });
+    }
+})
 
 module.exports = router;

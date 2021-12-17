@@ -5,7 +5,7 @@ Server for InstaPet app. Users can upload photos, tag them with one of 3 tags, l
 
 Technology Used:
 
-              PostGreSQL, Sequelize
+              Node.js, PostGreSQL, Sequelize
 
 ## Team Member #1  Katie Sallows
 
@@ -24,49 +24,25 @@ Technology Used:
     11.28       user edit endpoint
     12.01       post like endpoint
     12.02       user get likes endpoint
+    12.04       offset added to all getposts endpoints
  
 
 ## Team Member #2  Gabrielle Ford
 
-            GitHub: https://github.com/gabrielleford
-            LinkedIn: https://www.linkedin.com/in/gabrielle-f-293251221/
-            Portfolio: https://gabrielleford.github.io/
+[GitHub](https://github.com/gabrielleford)  
+[LinkedIn](https://www.linkedin.com/in/gabrielle-f-293251221/)  
+[Portfolio](https://gabrielleford.github.io/)
 
 ### Assigned Tasks
 
-**Post model**  
-Completion Date: 11/26  
-[11/26]: Post model / post.js - built out model
-
-
-**post/create** Endpoint  
-Completion Date: 11/26  
-[11/26]: post/create / postcontroller.js - fisnished post/create
-
-**post/** Endpoint  
-Completion Date: 11/26  
-[11/26]: post/ / postcontroller.js - finished the get all public posts endpoint
-
-**post/myposts** Endpoint  
-Completion Date: 11/26  
-[11/26]: post/myposts / postcontroller.js - finished the get all users posts endpoint
-
-**post/posts/:userid** Endpoint  
-Completion Date: 11/27  
-[11/27]: post/posts/:userid / postcontroller.js - finished the ability to view another users public posts
-
-**post/:id** Endpoint  
-Completion Date: 11/26  
-[11/26]: post/id / postcontroller.js - finished the get post by id endpoint
-
-
-**post/edit/:id** Endpoint  
-Completion Date: 11/26  
-[11/26]: post/edit/:id / postcontroller.js - finished the edit post endpoint
-
-
-**post/delete/:id** Endpoint  
-Completion Date: WIP  
-[11/27]: post/delete/:id / postcontroller.js - finished the delete post endpoint
+    Completed   Task
+    ---         ---
+    11.26       post model -> created & tested
+    11.26       post create, get all public posts, get user's posts, get post by ID, update post -> created & tested
+    11.27       delete post -> created & tested
+    11.29       get posts by tag, private vs public endpoints -> added endpoints that validate user to get public &  
+                private posts vs just public for invalidated user
+    12.02       update post -> edited to only update private, title, and description
+   
 
 *additional / optional
