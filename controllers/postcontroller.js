@@ -226,6 +226,7 @@ router.get("/validated/:id", validateJWT, async (req, res) => {
 //http://localhost:3000/post/tag/:tag
 router.get('/tag/:tag/:offset?', async (req, res) => {
     let offset = req.params.offset
+    const tag = req.params.tag;
 
     try {
         const postsByTag = await Post.findAll({
